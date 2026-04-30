@@ -1,0 +1,44 @@
+<resources>
+    <!-- Nomes Gerais -->
+    <string name="app_name">Calculadora de Combustível</string>
+    <string name="tab_calc">Calcular</string>
+    <string name="tab_list">Meus Postos</string>
+
+    <!-- Formulário -->
+    <string name="lbl_nome_posto">Nome do Posto</string>
+    <string name="lbl_localizacao">Localização (Ex: Bairro, Rua)</string>
+    <string name="lbl_preco_alcool">Preço do Álcool (R$)</string>
+    <string name="lbl_preco_gasolina">Preço da Gasolina (R$)</string>
+
+    <!-- Botões -->
+    <string name="btn_calc_save">Calcular e Salvar</string>
+    <string name="btn_update">Atualizar Posto</string>
+    <string name="btn_map">Ver no Mapa</string>
+    <string name="btn_grant">Conceder</string>
+    <string name="btn_cancel">Cancelar</string>
+
+    <!-- Mensagens e Resultados -->
+    <string name="msg_fill_calc">Preencha para calcular</string>
+    <string name="msg_fill_correct">Preencha todos os campos corretamente</string>
+    <string name="rec_alcool">Recomendação: Álcool</string>
+    <string name="rec_gasolina">Recomendação: Gasolina</string>
+    <string name="msg_melhor_alcool">Melhor Álcool</string>
+    <string name="msg_melhor_gas">Melhor Gasolina</string>
+
+    <!-- Permissões de Localização -->
+    <string name="perm_dialog_title">Permissão de Localização</string>
+    <string name="perm_dialog_desc">Precisamos acessar sua localização para salvar onde o posto está no mapa.</string>
+    <string name="perm_denied_msg">Permissão negada. O posto será salvo sem coordenadas.</string>
+
+    <!-- Textos da Lista -->
+    <string name="lbl_registered_at">Cadastrado em: %1$s</string>
+    <string name="lbl_location">Localização: %1$s</string>
+    <string name="lbl_prices">Álcool: R$ %1$s | Gasolina: R$ %2$s</string>
+
+    <!-- Acessibilidade (Leitores de tela) -->
+    <string name="desc_expand">Expandir</string>
+    <string name="desc_collapse">Recolher</string>
+    <string name="desc_edit">Editar</string>
+    <string name="desc_delete">Deletar</string>
+    <string name="desc_map">Ícone de Mapa</string>
+</resources>

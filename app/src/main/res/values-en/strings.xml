@@ -1,0 +1,44 @@
+<resources>
+    <!-- General Names -->
+    <string name="app_name">Fuel Calculator</string>
+    <string name="tab_calc">Calculate</string>
+    <string name="tab_list">My Stations</string>
+
+    <!-- Form -->
+    <string name="lbl_nome_posto">Station Name</string>
+    <string name="lbl_localizacao">Location (e.g. Street, City)</string>
+    <string name="lbl_preco_alcool">Alcohol Price ($)</string>
+    <string name="lbl_preco_gasolina">Gas Price ($)</string>
+
+    <!-- Buttons -->
+    <string name="btn_calc_save">Calculate &amp; Save</string>
+    <string name="btn_update">Update Station</string>
+    <string name="btn_map">View on Map</string>
+    <string name="btn_grant">Grant</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <!-- Messages and Results -->
+    <string name="msg_fill_calc">Fill to calculate</string>
+    <string name="msg_fill_correct">Please fill all fields correctly</string>
+    <string name="rec_alcool">Recommendation: Alcohol</string>
+    <string name="rec_gasolina">Recommendation: Gas</string>
+    <string name="msg_melhor_alcool">Best: Alcohol</string>
+    <string name="msg_melhor_gas">Best: Gas</string>
+
+    <!-- Location Permissions -->
+    <string name="perm_dialog_title">Location Permission</string>
+    <string name="perm_dialog_desc">We need access to your location to save where the station is on the map.</string>
+    <string name="perm_denied_msg">Permission denied. The station will be saved without coordinates.</string>
+
+    <!-- List Texts -->
+    <string name="lbl_registered_at">Registered at: %1$s</string>
+    <string name="lbl_location">Location: %1$s</string>
+    <string name="lbl_prices">Alcohol: $ %1$s | Gas: $ %2$s</string>
+
+    <!-- Accessibility (Screen readers) -->
+    <string name="desc_expand">Expand</string>
+    <string name="desc_collapse">Collapse</string>
+    <string name="desc_edit">Edit</string>
+    <string name="desc_delete">Delete</string>
+    <string name="desc_map">Map Icon</string>
+</resources>
