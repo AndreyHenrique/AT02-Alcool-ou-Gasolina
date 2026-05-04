@@ -1,6 +1,9 @@
 package com.example.alcoolougasolina.ui.screens
 
 import android.Manifest
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.material3.MaterialTheme
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
@@ -170,14 +173,22 @@ fun FuelCalculatorScreen(
                     resultadoTexto = textFillCorrect
                 }
             },
-            modifier = Modifier.fillMaxWidth().height(50.dp)
+            modifier = Modifier.fillMaxWidth().height(50.dp),
+            shape = RoundedCornerShape(12.dp)
+
         ) {
-            Text(if (postoParaEditar != null) stringResource(R.string.btn_update) else stringResource(R.string.btn_calc_save))
+            Text(if (postoParaEditar != null) stringResource(R.string.btn_update) else stringResource(R.string.btn_calc_save),
+            fontWeight = FontWeight.Bold
+            )
         }
 
         Spacer(modifier = Modifier.height(16.dp))
         // Exibe a instrução inicial se vazio, ou o resultado
-        Text(text = resultadoTexto.ifEmpty { stringResource(R.string.msg_fill_calc) }, fontSize = 16.sp)
+        Text(
+            text = resultadoTexto.ifEmpty { stringResource(R.string.msg_fill_calc) },
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Medium,
+            color = MaterialTheme.colorScheme.primary)
     }
 }
 
