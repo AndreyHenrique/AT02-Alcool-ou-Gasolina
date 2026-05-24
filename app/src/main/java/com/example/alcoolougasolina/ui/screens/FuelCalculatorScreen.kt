@@ -29,17 +29,23 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
-import com.example.alcoolougasolina.data.PostoDataManager
+import com.example.alcoolougasolina.R
 import com.example.alcoolougasolina.data.Posto
+import com.example.alcoolougasolina.data.PostoDataManager
+import com.example.alcoolougasolina.utils.vibrar
 import com.google.android.gms.location.LocationServices
 import java.util.UUID
-import com.example.alcoolougasolina.utils.vibrar
-import androidx.compose.ui.res.stringResource
-import com.example.alcoolougasolina.R
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.ui.graphics.Color
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -113,7 +119,14 @@ fun FuelCalculatorScreen(
             value = nomePosto,
             onValueChange = { nomePosto = it },
             label = { Text(stringResource(R.string.lbl_nome_posto)) },
-            modifier = Modifier.fillMaxWidth()
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            modifier = Modifier.fillMaxWidth(),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Color.Black,
+                unfocusedBorderColor = Color.DarkGray,
+                focusedLabelColor = Color.Black,
+                unfocusedLabelColor = Color.DarkGray
+            )
         )
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -121,7 +134,14 @@ fun FuelCalculatorScreen(
             value = localizacao,
             onValueChange = { localizacao = it },
             label = { Text(stringResource(R.string.lbl_localizacao)) },
-            modifier = Modifier.fillMaxWidth()
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            modifier = Modifier.fillMaxWidth(),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Color.Black,
+                unfocusedBorderColor = Color.DarkGray,
+                focusedLabelColor = Color.Black,
+                unfocusedLabelColor = Color.DarkGray
+            )
         )
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -129,8 +149,14 @@ fun FuelCalculatorScreen(
             value = precoAlcool,
             onValueChange = { precoAlcool = it },
             label = { Text(stringResource(R.string.lbl_preco_alcool)) },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            modifier = Modifier.fillMaxWidth()
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Next),
+            modifier = Modifier.fillMaxWidth(),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Color.Black,
+                unfocusedBorderColor = Color.DarkGray,
+                focusedLabelColor = Color.Black,
+                unfocusedLabelColor = Color.DarkGray
+            )
         )
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -138,8 +164,14 @@ fun FuelCalculatorScreen(
             value = precoGasolina,
             onValueChange = { precoGasolina = it },
             label = { Text(stringResource(R.string.lbl_preco_gasolina)) },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            modifier = Modifier.fillMaxWidth()
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Done),
+            modifier = Modifier.fillMaxWidth(),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Color.Black,
+                unfocusedBorderColor = Color.DarkGray,
+                focusedLabelColor = Color.Black,
+                unfocusedLabelColor = Color.DarkGray
+            )
         )
         Spacer(modifier = Modifier.height(32.dp))
 
@@ -176,8 +208,12 @@ fun FuelCalculatorScreen(
         }
 
         Spacer(modifier = Modifier.height(16.dp))
-        // Exibe a instrução inicial se vazio, ou o resultado
-        Text(text = resultadoTexto.ifEmpty { stringResource(R.string.msg_fill_calc) }, fontSize = 16.sp)
+
+        Text(
+            text = resultadoTexto.ifEmpty { stringResource(R.string.msg_fill_calc) },
+            fontSize = 16.sp,
+            modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }
+        )
     }
 }
 

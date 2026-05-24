@@ -82,7 +82,8 @@ fun ListScreen(dataManager: PostoDataManager, onEditClick: (Posto) -> Unit) {
                         Icon(
                             imageVector = if (expandido) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
                             contentDescription = if (expandido) stringResource(R.string.desc_collapse) else stringResource(R.string.desc_expand),
-                            tint = Color.Gray
+                            // CORREÇÃO: Trocado Gray por DarkGray para melhorar o contraste do ícone
+                            tint = Color.DarkGray
                         )
                     }
 
@@ -98,13 +99,20 @@ fun ListScreen(dataManager: PostoDataManager, onEditClick: (Posto) -> Unit) {
                         HorizontalDivider(thickness = 1.dp, color = Color.LightGray)
                         Spacer(modifier = Modifier.height(12.dp))
 
-                        // Formatação da data de cadastro usando o Locale padrão
                         val formatador = SimpleDateFormat("dd/MM/yyyy 'às' HH:mm", LocalLocale.current.platformLocale)
                         val dataCadastrada = formatador.format(Date(station.dataCadastro))
 
-                        Text(stringResource(R.string.lbl_registered_at, dataCadastrada), fontSize = 12.sp, color = Color.Gray)
+                        Text(
+                            text = stringResource(R.string.lbl_registered_at, dataCadastrada),
+                            fontSize = 12.sp,
+                            color = Color.DarkGray
+                        )
                         Spacer(modifier = Modifier.height(4.dp))
-                        Text(stringResource(R.string.lbl_location, station.localizacao), fontSize = 14.sp)
+                        Text(
+                            text = stringResource(R.string.lbl_location, station.localizacao),
+                            fontSize = 14.sp,
+                            color = Color.DarkGray
+                        )
 
                         Spacer(modifier = Modifier.height(16.dp))
 
@@ -124,34 +132,54 @@ fun ListScreen(dataManager: PostoDataManager, onEditClick: (Posto) -> Unit) {
                                 modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
                                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE0E0E0), contentColor = Color.Black)
                             ) {
-                                Icon(Icons.Default.Place, contentDescription = stringResource(R.string.desc_map))
+                                Icon(
+                                    Icons.Default.Place,
+                                    contentDescription = "${stringResource(R.string.desc_map)} ${station.nome}")
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Text(stringResource(R.string.btn_map))
                             }
                         }
 
                         // Ações e Recomendação
-                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
                             val proporcao = station.precoAlcool / station.precoGasolina
                             val isAlcoolMelhor = proporcao <= 0.70
 
                             val textoRecomendacao = if (isAlcoolMelhor) stringResource(R.string.rec_alcool) else stringResource(R.string.rec_gasolina)
-                            val corRecomendacao = if (isAlcoolMelhor) Color(0xFF2E7D32) else Color(0xFFE65100)
+                            val corFundo = if (isAlcoolMelhor) Color(0xFF2E7D32).copy(alpha = 0.1f) else Color(0xFFE65100).copy(alpha = 0.1f)
+                            val corTexto = if (isAlcoolMelhor) Color(0xFF1B5E20) else Color(0xFF993300)
 
-                            Surface(color = corRecomendacao.copy(alpha = 0.1f), shape = RoundedCornerShape(8.dp)) {
-                                Text(text = textoRecomendacao, color = corRecomendacao, fontSize = 14.sp, modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp))
+                            Surface(color = corFundo, shape = RoundedCornerShape(8.dp)) {
+                                Text(
+                                    text = textoRecomendacao,
+                                    color = corTexto,
+                                    fontSize = 14.sp,
+                                    fontWeight = FontWeight.SemiBold,
+                                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                                )
                             }
 
-                            // Opções de alteração e exclusão
                             Row {
                                 IconButton(onClick = { onEditClick(station) }) {
-                                    Icon(Icons.Default.Edit, contentDescription = stringResource(R.string.desc_edit), tint = Color.Gray) // Traduzido
+                                    Icon(
+                                        imageVector = Icons.Default.Edit,
+                                        contentDescription = "${stringResource(R.string.desc_edit)} ${station.nome}",
+                                        tint = Color.DarkGray
+                                    )
                                 }
                                 IconButton(onClick = {
                                     dataManager.excluirPosto(station.id)
                                     stations = dataManager.lerPostos()
                                 }) {
-                                    Icon(Icons.Default.Delete, contentDescription = stringResource(R.string.desc_delete), tint = MaterialTheme.colorScheme.error) // Traduzido
+                                    Icon(
+                                        imageVector = Icons.Default.Delete,
+                                        contentDescription = "${stringResource(R.string.desc_delete)} ${station.nome}",
+                                        tint = MaterialTheme.colorScheme.error
+                                    )
                                 }
                             }
                         }
